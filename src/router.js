@@ -28,6 +28,13 @@ const router = new Router({
       component: () =>
         import(/* webpackChunkName: "about" */ "./views/About.vue"),
       meta: { requiresAuth: true }
+    },
+    {
+      path: "/institution/:id",
+      name: "institution",
+      component: () =>
+        import(/* webpackChunkName: "institution" */ "./views/Institution.vue"),
+      meta: { requiresAuth: true }
     }
   ]
 });

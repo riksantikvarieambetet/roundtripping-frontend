@@ -1,19 +1,17 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://byabbe.se/roundtripping-api-mock/mocks/"
+  baseURL: "https://tools.wmflabs.org/roundtripping"
 });
 
 export function getInstitutions() {
-  return api.get("instututions.json");
+  return api.get("institutions");
 }
 
 export function getCollections(instituionId) {
-  return api.get(`instututions/${instituionId}/collections.json`);
+  return api.get(`institutions/${instituionId}/collections`);
 }
 
 export function getCollection(instituionId, collectionId) {
-  return api.get(
-    `instututions/${instituionId}/collections/${collectionId}.json`
-  );
+  return api.get(`institutions/${instituionId}/collections/${collectionId}`);
 }

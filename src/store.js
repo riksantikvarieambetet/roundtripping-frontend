@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import { getInstitutions } from "./api";
+import { getInstitutions, getCollections } from "./api";
 
 Vue.use(Vuex);
 
@@ -30,6 +30,17 @@ export default new Vuex.Store({
       commit("setInstitutionsBusy");
       return getInstitutions().then(response => {
         commit("setInstitutionsList", { list: response.data });
+      });
+    },
+    getCollections({ commit, dispatch, state }, { id }) {
+      const loadInstitutions = state.institutions.loaded
+        ? Promise.resolve()
+        : dispatch("getInstitutions");
+
+      return loadInstitutions.then(() => {
+        return getCollections(id).then(response => {
+          console.log(response.data);
+        });
       });
     }
   }
