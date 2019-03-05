@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["about"],{f820:function(t,e,o){"use strict";o.r(e);var r=function(){var t=this,e=t.$createElement,o=t._self._c||e;return o("b-jumbotron",{attrs:{header:"Bootstrap Vue",lead:"Bootstrap 4 Components for Vue.js 2"}},[o("p",[t._v("For more information visit website")]),o("b-btn",{attrs:{variant:"primary",href:"#"}},[t._v("More Info")])],1)},n=[],a=o("2877"),s={},i=Object(a["a"])(s,r,n,!1,null,null,null);e["default"]=i.exports}}]);
+//# sourceMappingURL=about.183fae9d.js.map
