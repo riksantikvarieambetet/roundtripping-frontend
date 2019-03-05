@@ -35,6 +35,13 @@ const router = new Router({
       component: () =>
         import(/* webpackChunkName: "institution" */ "./views/Institution.vue"),
       meta: { requiresAuth: true }
+    },
+    {
+      path: "/collection/:institutionId/:id",
+      name: "collection",
+      component: () =>
+        import(/* webpackChunkName: "collection" */ "./views/Collection.vue"),
+      meta: { requiresAuth: true }
     }
   ]
 });

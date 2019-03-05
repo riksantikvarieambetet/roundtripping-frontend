@@ -21,7 +21,7 @@
           <p>
             <router-link
               class="btn btn-outline-secondary"
-              :to="{ name: 'collection', params: { id: collection.id }}"
+              :to="{ name: 'collection', params: { institutionId: institution.id, id: collection.id }}"
             >View details &raquo;</router-link>
           </p>
         </div>

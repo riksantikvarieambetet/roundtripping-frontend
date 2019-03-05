@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import { getInstitutions, getCollections } from "./api";
+import { getInstitutions, getCollections, getCollection } from "./api";
 
 Vue.use(Vuex);
 
@@ -11,7 +11,8 @@ export default new Vuex.Store({
       busy: false,
       loaded: false,
       list: []
-    }
+    },
+    collections: {}
   },
   mutations: {
     setInstitutionsBusy(state) {
@@ -36,6 +37,12 @@ export default new Vuex.Store({
       };
 
       state.institutions.list = [...array];
+    },
+    setCollection(state, { id, collection }) {
+      state.collections = {
+        ...state.collections,
+        [id]: collection
+      };
     }
   },
   actions: {
@@ -55,6 +62,12 @@ export default new Vuex.Store({
           const collections = response.data;
           commit("setInstitutionCollections", { id, collections });
         });
+      });
+    },
+    getCollection({ commit, dispatch, state }, { institutionId, id }) {
+      return getCollection(institutionId, id).then(response => {
+        const collection = response.data;
+        commit("setCollection", { id, collection });
       });
     }
   }
