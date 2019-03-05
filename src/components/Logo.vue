@@ -1,7 +1,7 @@
 <template>
-  <div id="Logo" class="d-flex flex-column align-items-center">
+  <div id="Logo" class="d-flex flex-column align-items-center mt-4">
     <img
-      class="logo__image"
+      class="logo__image d-none"
       src="https://upload.wikimedia.org/wikipedia/commons/c/c6/Emojione_1F439.svg"
     >
     <h3 class="display-4 w-100">{{ title }}</h3>
