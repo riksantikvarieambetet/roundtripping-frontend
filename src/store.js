@@ -23,6 +23,19 @@ export default new Vuex.Store({
         loaded: true,
         list
       };
+    },
+    setInstitutionCollections(state, { id, collections }) {
+      const institution = state.institutions.list.find(
+        institution => institution.id === id
+      );
+      const index = state.institutions.list.indexOf(institution);
+      const array = [...state.institutions.list];
+      array[index] = {
+        ...array[index],
+        collections
+      };
+
+      state.institutions.list = [...array];
     }
   },
   actions: {
@@ -39,7 +52,8 @@ export default new Vuex.Store({
 
       return loadInstitutions.then(() => {
         return getCollections(id).then(response => {
-          console.log(response.data);
+          const collections = response.data;
+          commit("setInstitutionCollections", { id, collections });
         });
       });
     }
