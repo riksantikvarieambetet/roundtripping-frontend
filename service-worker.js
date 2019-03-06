@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/roundtripping-frontend/precache-manifest.3d0a2793aaa74038912b1c59c75e1c89.js"
+  "/roundtripping-frontend/precache-manifest.83df0f750d9915504f612f66fd19a7cd.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "roundtripping-frontend"});
