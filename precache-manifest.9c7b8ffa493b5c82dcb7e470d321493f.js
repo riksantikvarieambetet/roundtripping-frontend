@@ -4,6 +4,10 @@ self.__precacheManifest = [
     "url": "/roundtripping-frontend/robots.txt"
   },
   {
+    "revision": "398476c0db648fc5150e",
+    "url": "/roundtripping-frontend/js/translation.f2a2acb6.js"
+  },
+  {
     "revision": "3afdc6f5192f63762386",
     "url": "/roundtripping-frontend/js/institution.b1ca7142.js"
   },
@@ -16,15 +20,15 @@ self.__precacheManifest = [
     "url": "/roundtripping-frontend/js/chunk-vendors.102841cc.js"
   },
   {
-    "revision": "b30692418c8e0959d518",
-    "url": "/roundtripping-frontend/js/app.c9da1aac.js"
+    "revision": "0285218275867082aed7",
+    "url": "/roundtripping-frontend/js/app.d883f117.js"
   },
   {
     "revision": "19c71bf99be7aadc2af6",
     "url": "/roundtripping-frontend/js/about.183fae9d.js"
   },
   {
-    "revision": "3c7a057d7f397b77556dcd3b18ae2268",
+    "revision": "b369e66154a67fe91d214fb22c60126a",
     "url": "/roundtripping-frontend/index.html"
   },
   {
@@ -32,7 +36,7 @@ self.__precacheManifest = [
     "url": "/roundtripping-frontend/css/chunk-vendors.52604ccd.css"
   },
   {
-    "revision": "b30692418c8e0959d518",
+    "revision": "0285218275867082aed7",
     "url": "/roundtripping-frontend/css/app.53df412a.css"
   }
 ];
