@@ -42,6 +42,13 @@ const router = new Router({
       component: () =>
         import(/* webpackChunkName: "collection" */ "./views/Collection.vue"),
       meta: { requiresAuth: true }
+    },
+    {
+      path: "/translations/:id",
+      name: "translations",
+      component: () =>
+        import(/* webpackChunkName: "translation" */ "./views/Translation.vue"),
+      meta: { requiresAuth: true }
     }
   ]
 });

@@ -15,3 +15,7 @@ export function getCollections(instituionId) {
 export function getCollection(instituionId, collectionId) {
   return api.get(`institutions/${instituionId}/collections/${collectionId}`);
 }
+
+export function getTranslations(id) {
+  return api.get(`changes/${id}/translations`);
+}
