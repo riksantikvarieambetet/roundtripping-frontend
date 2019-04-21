@@ -1,5 +1,7 @@
 <template>
   <div id="Home">
+    <a id="download" style="display:none"></a>
+
     <div class="jumbotron">
       <div class="container">
         <Logo title="Översättning"/>
@@ -79,7 +81,7 @@ export default {
       });
     },
     async prepareDownload() {
-      this.downBtnText = 'Generating download'
+      this.downBtnText = 'Generating download';
       let more = true;
       let i = 1;
       while (more) {
@@ -91,6 +93,14 @@ export default {
           more = false;
         }
       }
+      let csv = ''
+      this.translations.forEach(translation => {
+        csv += `${translation.mediainfo_id},${translation.local_id.replace('\n', '')},${translation.translations[0].value},${translation.translations[1].value}\n`;
+      });
+      document.querySelector('#download').href = window.URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+      document.querySelector('#download').download = 'export.csv';
+      document.querySelector('#download').click();
+      this.downBtnText = 'Started Download';
     }
   },
   watch: {
