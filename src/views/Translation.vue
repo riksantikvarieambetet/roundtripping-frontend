@@ -10,7 +10,9 @@
       </div>
     </div>
 
-    <b-pagination v-model="page" :per-page="50" :total-rows="1300" align="center"></b-pagination>
+    <b-button-toolbar style="margin:auto; max-width: 500px;">
+      <b-pagination v-model="page" :per-page="50" :total-rows="1300" align="center"></b-pagination> <b-button style="height:40px; margin-left:5px;" @click="prepareDownload">{{ downBtnText }}</b-button>
+    </b-button-toolbar>
 
     <div class="container">
       <div class="row mb-2" v-for="translation in translations" :key="translation.mediainfo_id">
@@ -47,6 +49,8 @@ export default {
       translations: [],
       page: 1,
       collection: null,
+      translationsForDownload: [],
+      downBtnText: 'Download CSV',
     };
   },
   mounted: function() {
@@ -61,10 +65,32 @@ export default {
   },
   methods: {
     setTranslations: function(page) {
-      console.log(this.collection)
       getTranslations(this.collection, page).then(response => {
         this.translations = response.data;
       });
+    },
+    syncQueryWrapper(i) {
+      return new Promise((resolve, reject) => {
+        getTranslations(this.collection, i).then(response => {
+          resolve(this.translationsForDownload.concat(response.data));
+        }).catch(error => {
+          resolve(false);
+        });
+      });
+    },
+    async prepareDownload() {
+      this.downBtnText = 'Generating download'
+      let more = true;
+      let i = 1;
+      while (more) {
+        let data = await this.syncQueryWrapper(i);
+        if (data) {
+          this.translationsForDownload = data;
+          i += 1;
+        } else {
+          more = false;
+        }
+      }
     }
   },
   watch: {
