@@ -12,11 +12,14 @@
 
     <div class="container">
       <div class="row mb-2" v-for="translation in translations" :key="translation.mediainfo_id">
-        <div class="col-md-2">
+        <div class="col-md-1">
           <a
             :href="`//commons.wikimedia.org/wiki/Special:Redirect/file?wptype=page&wpvalue=${translation.mediainfo_id.substring(1)}`"
           >{{ translation.mediainfo_id }}</a>
         </div>
+
+        <div class="col-md-1">{{ translation.local_id }}</div>
+
         <div class="col-md-5 small">{{ translation.translations[0].value}}</div>
         <div class="col-md-5 small">{{ translation.translations[1].value}}</div>
       </div>
