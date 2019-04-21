@@ -29,7 +29,6 @@
 import { mapState } from "vuex";
 import Logo from "@/components/Logo.vue";
 import { getTranslationsProgress } from "@/api";
-import { setTimeout } from 'timers';
 
 export default {
   name: "translations",
