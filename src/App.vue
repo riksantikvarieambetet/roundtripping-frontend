@@ -18,8 +18,6 @@
         <router-link to="/">Home</router-link>|
         <router-link to="/about">About</router-link>
       </div>
-
-      <button class="btn btn-outline-light ml-auto" type="button">Logout</button>
     </nav>
 
     <main role="main">
