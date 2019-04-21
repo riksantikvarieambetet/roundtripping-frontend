@@ -5,7 +5,6 @@ import {
   getInstitutions,
   getCollections,
   getCollection,
-  getTranslations
 } from "./api";
 
 Vue.use(Vuex);
@@ -18,7 +17,6 @@ export default new Vuex.Store({
       list: []
     },
     collections: {},
-    translations: {}
   },
   mutations: {
     setInstitutionsBusy(state) {
@@ -50,12 +48,6 @@ export default new Vuex.Store({
         [id]: collection
       };
     },
-    setTranslations(state, { id, translations }) {
-      state.translations = {
-        ...state.translations,
-        [id]: translations
-      };
-    }
   },
   actions: {
     getInstitutions({ commit }) {
@@ -82,11 +74,5 @@ export default new Vuex.Store({
         commit("setCollection", { id, collection });
       });
     },
-    getTranslations({ commit }, { id }) {
-      return getTranslations(id).then(response => {
-        const translations = response.data;
-        commit("setTranslations", { id, translations });
-      });
-    }
   }
 });

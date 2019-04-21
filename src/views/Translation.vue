@@ -10,6 +10,8 @@
       </div>
     </div>
 
+    <b-pagination v-model="page" :per-page="50" :total-rows="1300" align="center"></b-pagination>
+
     <div class="container">
       <div class="row mb-2" v-for="translation in translations" :key="translation.mediainfo_id">
         <div class="col-md-1">
@@ -31,7 +33,7 @@
 <script>
 import { mapState } from "vuex";
 import Logo from "@/components/Logo.vue";
-import { getTranslationsProgress } from "@/api";
+import { getTranslationsProgress , getTranslations} from "@/api";
 
 export default {
   name: "translations",
@@ -42,34 +44,33 @@ export default {
     return {
       progress: null,
       updated: '',
+      translations: [],
+      page: 1,
+      collection: null,
     };
   },
-  computed: mapState({
-    translations(state) {
-      const { id } = this.$route.params;
-      return state.translations[id] || {};
-    },
-  }),
   mounted: function() {
-    const { id } = this.$route.params;
-    const { translations } = this.$store.state;
+    this.collection = this.$route.params.id;
 
-    getTranslationsProgress(id).then(response => {
+    getTranslationsProgress(this.collection).then(response => {
       this.progress = response.data.progress;
       this.updated = response.data.timestamp;
     });
 
-    if (!translations[id]) {
-      this.$store.dispatch("getTranslations", { id });
+    this.setTranslations(this.page);
+  },
+  methods: {
+    setTranslations: function(page) {
+      console.log(this.collection)
+      getTranslations(this.collection, page).then(response => {
+        this.translations = response.data;
+      });
     }
   },
-  updated: function() {
-    const { id } = this.$route.params;
-    const { translations } = this.$store.state;
-
-    if (!translations[id]) {
-      this.$store.dispatch("getTranslations", { id });
-    }
-  }
+  watch: {
+    page: function (val) {
+      this.setTranslations(this.page);
+    },
+  },
 };
 </script>
