@@ -2,10 +2,11 @@
   <div id="Home">
     <div class="jumbotron">
       <div class="container">
-        <Logo title="Translations"/>
-        <p
-          class="lead"
-        >Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <Logo title="Översättning"/>
+        <p class="lead">
+          Framsteg (% uppdaterad {{ updated }}):<br>
+          <b-progress v-if="progress" :value="progress" :max="100" show-progress class="mb-3"></b-progress>
+        </p>
       </div>
     </div>
 
@@ -27,21 +28,34 @@
 <script>
 import { mapState } from "vuex";
 import Logo from "@/components/Logo.vue";
+import { getTranslationsProgress } from "@/api";
+import { setTimeout } from 'timers';
 
 export default {
   name: "translations",
   components: {
     Logo
   },
+  data() {
+    return {
+      progress: null,
+      updated: '',
+    };
+  },
   computed: mapState({
     translations(state) {
       const { id } = this.$route.params;
       return state.translations[id] || {};
-    }
+    },
   }),
   mounted: function() {
     const { id } = this.$route.params;
     const { translations } = this.$store.state;
+
+    getTranslationsProgress(id).then(response => {
+      this.progress = response.data.progress;
+      this.updated = response.data.timestamp;
+    });
 
     if (!translations[id]) {
       this.$store.dispatch("getTranslations", { id });

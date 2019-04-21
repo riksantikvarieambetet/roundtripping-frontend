@@ -19,3 +19,7 @@ export function getCollection(instituionId, collectionId) {
 export function getTranslations(id) {
   return api.get(`changes/${id}/translations`);
 }
+
+export function getTranslationsProgress(id) {
+  return api.get(`changes/${id}/translations/progress`);
+}
