@@ -27,7 +27,8 @@
         <div class="col-md-1">{{ translation.local_id }}</div>
 
         <div class="col-md-5 small">{{ translation.translations[0].value}}</div>
-        <div class="col-md-5 small">{{ translation.translations[1].value}}</div>
+        <div v-if="translation.translations[1]" class="col-md-5 small">{{ translation.translations[1].value}}</div>
+        <div v-else class="col-md-5 small">-</div>
       </div>
       <hr>
     </div>
@@ -95,6 +96,11 @@ export default {
       }
       let csv = ''
       this.translations.forEach(translation => {
+        if (!translation.translations[1]) {
+          translation.translations[1] = {};
+          translation.translations[1].value = '';
+        }
+
         csv += `${translation.mediainfo_id},${translation.local_id.replace('\n', '')},${translation.translations[0].value},${translation.translations[1].value}\n`;
       });
       document.querySelector('#download').href = window.URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
